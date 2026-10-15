@@ -1,0 +1,313 @@
+# Task Router — Destination Config
+#
+# To add a new destination, append a new block to the `routes` list below.
+# Fields:
+#   id          — unique snake_case name
+#   name        — human-readable label (shown in the approval table)
+#   keywords    — list of words/phrases that signal this route (case-insensitive)
+#   target_type — one of: apple_notes | notion_db | google_calendar | todoist_section |
+#                          google_sheet | google_doc | beli | code_project
+#   target_id   — the ID, collection URL, section ID, or path for the target
+#   target_url  — direct edit link shown to user for semi-auto targets (optional)
+#   execution   — auto | semi | manual
+#   notes       — optional extra context Claude should use when routing here
+
+routes:
+
+  # ─── FULLY AUTOMATIC ────────────────────────────────────────────────────────
+
+  - id: peaceful_spots
+    name: Apple Notes "CALM DOWN Peaceful PLACES"
+    keywords:
+      - peaceful
+      - quiet spot
+      - stone bridge
+      - nature spot
+      - park
+      - trail
+      - hill
+      - serene
+      - chill spot
+      - keep driving
+      - turn right
+      - hidden spot
+      - overlook
+      - escape
+      - calm
+    target_type: apple_notes
+    target_id: "CALM DOWN Peaceful PLACES"
+    execution: auto
+    notes: >
+      Extract a clean, memorable description of the location from the task.
+      Format: "<Place name/area> — <what makes it notable, directions if helpful>"
+      Use osascript to append an HTML list item to the note body.
+
+  - id: travel_places
+    name: Notion Places Database
+    keywords:
+      - bucket list
+      - visit
+      - explore
+      - trip to
+      - travel to
+      - country
+      - city
+      - destination
+      - when i go to
+      - places in
+      - things to do in
+    target_type: notion_db
+    target_id: "collection://a734485f-3519-4c2e-a15e-a846ff9d2f7b"
+    target_url: "https://www.notion.so/ce15e71a51814fd5b26b62e1199268be"
+    execution: auto
+    notes: >
+      Populate: Places (title) = location name, Notes = any detail from task description.
+      Leave Country (Manual) and Trip empty — user links those manually.
+      Use notion-create-pages tool.
+
+  - id: calendar
+    name: Google Calendar
+    keywords:
+      - schedule
+      - appointment
+      - meeting
+      - event on
+      - event at
+      - reminder on
+      - at [time]
+      - on [day]
+      - book
+      - block time
+    target_type: google_calendar
+    target_id: primary
+    execution: auto
+    notes: >
+      Parse the task for date, time, and event title. If no time is specified,
+      create an all-day event. Use the create_event MCP tool.
+
+  - id: work
+    name: Todoist "Work" Section
+    keywords:
+      - work
+      - job
+      - client
+      - office
+      - colleague
+      - email back
+      - follow up with
+      - call with
+      - meeting at work
+      - sponsor
+    target_type: todoist_section
+    target_id: "6gH6WPx5qhJj3qHQ"
+    execution: auto
+    notes: >
+      Move the task to the Work section using update-tasks with sectionId.
+      Do not remove the task from Todoist — just re-section it.
+
+  # ─── SEMI-AUTOMATIC (Claude prepares exact entry, user pastes it) ────────────
+
+  - id: restaurants
+    name: Beli (restaurant wishlist app)
+    keywords:
+      - restaurant
+      - cafe
+      - coffee shop
+      - bar
+      - brewery
+      - dining
+      - eat at
+      - try out
+      - yummy
+      - corral
+      - diner
+      - brunch spot
+      - sushi
+      - pizza
+      - steakhouse
+      - ramen
+      - thai food
+      - greek food
+      - mediterranean
+    target_type: beli
+    target_id: mobile_app
+    execution: manual
+    notes: >
+      Beli has no web version or API. Extract each restaurant name from the task.
+      Give the user step-by-step instructions: Open Beli → tap + → Search "[name]" → Save to Wishlist.
+      List each restaurant as a separate action item.
+
+  - id: movies_youtube
+    name: "[0] One Day Movies, YouTube, etc?"
+    keywords:
+      - movie
+      - film
+      - show
+      - watch
+      - youtube
+      - video
+      - documentary
+      - series
+      - season
+      - episode
+      - shorts
+      - layover
+      - channel
+      - terminal
+      - star wars
+      - anime
+      - tv show
+    target_type: google_sheet
+    target_id: "1EgqqvbNhQLKtemnk6sN_1NjzSdqPypYX75C29ebwzK4"
+    target_url: "https://docs.google.com/spreadsheets/d/1EgqqvbNhQLKtemnk6sN_1NjzSdqPypYX75C29ebwzK4/edit"
+    execution: semi
+    notes: >
+      The sheet has category columns: PRIORITIZED, Interesting, Safety, Motivational,
+      Travel, Politics, Other Churches, Career, Shorts, Entire Playlists.
+      Pick the best-fit column for the content. Show user: column name + entry text + direct link.
+
+  - id: books
+    name: "[3] Books 📚"
+    keywords:
+      - book
+      - read
+      - author
+      - novel
+      - memoir
+      - biography
+      - nonfiction
+      - audiobook
+    target_type: google_sheet
+    target_id: "1MTPZ8uJQWnk6G7v5ML_nxsuuWSD43pRwmX_svA677sw"
+    target_url: "https://docs.google.com/spreadsheets/d/1MTPZ8uJQWnk6G7v5ML_nxsuuWSD43pRwmX_svA677sw/edit"
+    execution: semi
+    notes: >
+      Read the sheet first to find column headers and last-used row.
+      Show user the exact row to add + direct link.
+
+  - id: language_study
+    name: "[4] Language Study 🗣️"
+    keywords:
+      - word
+      - phrase
+      - vocab
+      - vocabulary
+      - arabic
+      - spanish
+      - french
+      - coptic
+      - translate
+      - pronunciation
+      - grammar
+      - language note
+    target_type: google_sheet
+    target_id: "17AueU2njd7lqSkUDYhzkgNkFt9wTkKGH773HQpSmHtk"
+    target_url: "https://docs.google.com/spreadsheets/d/17AueU2njd7lqSkUDYhzkgNkFt9wTkKGH773HQpSmHtk/edit"
+    execution: semi
+    notes: >
+      Read the sheet to understand its structure before suggesting where to add.
+      Show user the exact entry + column + direct link.
+
+  - id: spending
+    name: Spending / Buy List
+    keywords:
+      - buy
+      - purchase
+      - get me
+      - order
+      - want to get
+      - need to get
+      - amazon
+      - spend on
+      - pick up
+    target_type: google_sheet
+    target_id: "1iiru23fELnDuGGDY3Dy0NR90YG58UV7blOjSBhjI1VI"
+    target_url: "https://docs.google.com/spreadsheets/d/1iiru23fELnDuGGDY3Dy0NR90YG58UV7blOjSBhjI1VI/edit"
+    execution: semi
+    notes: >
+      Extract item name + estimated cost if mentioned. Show user the row to add + direct link.
+
+  - id: ai_ideas
+    name: AI PROJECT IDEAS (Google Doc)
+    keywords:
+      - AI project
+      - project idea
+      - app idea
+      - tool idea
+      - build a skill
+      - automate
+      - Claude project
+      - new feature idea
+      - build something
+      - MCP idea
+    target_type: google_doc
+    target_id: "1tPkO2CqucKbT-wAeJbw2Ngvicyr9-Ey8n4Z0mvHHo6g"
+    target_url: "https://docs.google.com/document/d/1tPkO2CqucKbT-wAeJbw2Ngvicyr9-Ey8n4Z0mvHHo6g/edit"
+    execution: semi
+    notes: >
+      Format as a bullet point with the idea name bolded and any context below it.
+      Show user: formatted text to paste + direct doc link.
+
+  - id: todos_doc
+    name: TODOs (Google Doc)
+    keywords:
+      - remind me
+      - don't forget
+      - follow up
+      - check on
+      - to do
+      - action item
+      - next step
+    target_type: google_doc
+    target_id: "1mN2lnDs4YHHf11hleP0xxwowXIu8sPgQOIzozqbsLVA"
+    target_url: "https://docs.google.com/document/d/1mN2lnDs4YHHf11hleP0xxwowXIu8sPgQOIzozqbsLVA/edit"
+    execution: semi
+    notes: >
+      Format as a simple checkbox bullet. Show user: text to paste + direct link.
+
+  - id: dating_notes
+    name: Dating / Relationship Notes
+    keywords:
+      - dating
+      - relationship
+      - date
+      - romantic
+      - girlfriend
+      - wife
+      - marriage advice
+      - love life
+      - girl i like
+    target_type: google_sheet
+    target_id: "118fAs4Eey8N2h7QhUyGoh8jN4eI0zmJAVsiSEH-jVzY"
+    target_url: "https://docs.google.com/spreadsheets/d/118fAs4Eey8N2h7QhUyGoh8jN4eI0zmJAVsiSEH-jVzY/edit"
+    execution: semi
+    notes: >
+      Read the sheet structure first. Extract the insight or note from the task.
+      Show user: formatted row to add + direct link.
+
+  - id: code_task
+    name: Code Project (local edit + push)
+    keywords:
+      - fix bug
+      - implement
+      - add feature
+      - update code
+      - refactor
+      - debug
+      - build out
+      - finance cockpit
+      - todoist-ai
+      - instagram-mcp
+      - apple-health
+      - imdb
+      - youtube notebooklm
+      - bulk-gcal
+      - apple shortcut
+    target_type: code_project
+    target_id: "~/code-projects"
+    execution: semi
+    notes: >
+      Use ~/code-projects/PROJECT-MAP.md to identify which repo matches the task.
+      Read relevant source files in that repo. Make the code change.
+      Then tell user: "Changes made to <file(s)>. Review with `git diff`, then push when ready."
+      Do NOT push automatically.

@@ -1,0 +1,23 @@
+{
+  "skill_name": "chrome-extension-dev",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Validate the manifest.json for my flight-email-parser Chrome extension",
+      "expected_output": "Comprehensive manifest validation report including syntax check, required fields verification, and any configuration issues",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I want to test this CSS selector against Gmail to make sure it works: .aKD.h7 for email headers",
+      "expected_output": "Live selector test results showing whether the selector matches elements on Gmail, how many matches found, and specificity analysis",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Setup a hotload development cycle for my Chrome extension so changes reload automatically",
+      "expected_output": "Configuration instructions for hotload including file watching setup and automated reload mechanism",
+      "files": []
+    }
+  ]
+}

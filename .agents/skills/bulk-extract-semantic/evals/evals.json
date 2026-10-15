@@ -1,0 +1,23 @@
+{
+  "skill_name": "bulk-extract-semantic",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Extract semantic knowledge from ~/code-projects/todoist-ai - I want to understand the architecture and key patterns",
+      "expected_output": "Structured semantic extraction including architecture overview, key patterns, dependencies, and main concepts from the codebase",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Analyze multiple Chrome extensions in ~/code-projects/Chrome\\ Extensions and identify common patterns",
+      "expected_output": "Cross-extension analysis showing common patterns, shared approaches, architecture similarities, and differences",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I have a collection of text files in ~/notes. Extract themes and key concepts from all of them in one pass",
+      "expected_output": "Aggregated thematic analysis across all files including main themes, connections between files, and unified knowledge summary",
+      "files": []
+    }
+  ]
+}

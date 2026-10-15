@@ -1,0 +1,23 @@
+{
+  "skill_name": "notebooklm-scraper",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I want to study all US Senators in NotebookLM — can you get their Wikipedia bios and group them by political party? Just test it on the first 5 senators so it runs fast.",
+      "expected_output": "A Python scraper script that fetches US Senator names from a structured source (Wikipedia list or similar), looks up each senator's Wikipedia bio, groups by party (Democrat/Republican/Independent), and writes grouped .txt files. Should run in test mode on 5 senators and produce at least one output file with real bio text.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Can you scrape Wikipedia bios for the Forbes top 10 billionaires and group them by industry into NotebookLM-ready files? Just the top 10 for now.",
+      "expected_output": "A scraper that pulls the Forbes billionaires list (or uses a known top-10 list), fetches each person's Wikipedia bio, groups by industry (Tech, Finance, etc.), and writes .txt files. Should produce files with substantive bio text for recognizable names like Elon Musk, Jeff Bezos, etc.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I already ran the Fortune 500 CEO scraper and got the output files. Now I want to expand it to the Fortune 1000 — what do I need to change in the script?",
+      "expected_output": "Clear explanation that the fortune.com __NEXT_DATA__ already contains all 1000 companies — just remove the rank <= 500 filter. Should show the specific line to change in the existing scraper.py and optionally offer to make the edit and rerun.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Yearly Review"
+  short_description: "Reflect on a calendar year"
+  default_prompt: "Review 2025 from my Google Calendar and give me a growth-oriented year summary."

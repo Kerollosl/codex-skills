@@ -1,0 +1,68 @@
+---
+name: email-cleanup
+description: "Run one bundled Gmail cleanup: sort unlabeled inbox mail onto existing labels, review recent mail across existing folders for junk and misfiling, and suggest filters for repeated unwanted email. Use when the user asks to clean, organize, sort, or declutter Gmail. Present trash, filing corrections, and filter proposals for approval before applying them."
+---
+
+# Email Cleanup
+
+Run inbox sorting, folder review, and repeated-mail analysis together by default. A narrower user request overrides the default scope. Use existing labels and keep the output concise. As part of the user's standing cleanup preference, remove user-created labels from mail currently snoozed until a future date so it does not contribute to label unread counts. Other label removals, trashing, filter creation, and marking spam require approval of the concrete proposal.
+
+## Interface and safeguards
+
+Use available connected Gmail tools and their live descriptions/schemas. Discover the current list-label, search, thread-read, label-update, trash, and filter capabilities; do not assume a plugin namespace or that filter management exists. Browser UI is a fallback only when a required connector operation is unavailable and the session permits it.
+
+Fetch the existing user-created labels first. Never create labels or use `create_missing_labels=true`. Preserve system labels, stars, read state, and existing user labels unless an approved correction, a user-requested read/unread action, or the future-snoozed label cleanup below requires a specific change. Verify whether each operation targets messages or whole threads; do not assume that a message-level label or trash operation covers every message in a conversation.
+
+Carry forward explicit keep exclusions from the current cleanup session. Do not re-propose those messages or sender/category exclusions in later batches of that session. Never persist private sender details or keep rules in local memory without the user's explicit request. Check existing Gmail filters, when accessible, before proposing duplicates or conflicting rules.
+
+## 1. Gather the bundled review set
+
+- **Unlabeled inbox:** search `in:inbox has:nouserlabels -is:snoozed` and paginate to exhaustion, using a page size of 50 when supported.
+- **Future-snoozed mail:** search `is:snoozed -in:spam -in:trash` and paginate to exhaustion, independently of the recent-mail window. Confirm that each target is still snoozed until a future date using available snooze metadata or the live Snoozed view. If the future snooze state cannot be established, leave its labels unchanged and report the gap.
+- **Folder review:** inspect recent messages across all existing user labels, including already-labeled and archived mail. Default to the last 30 days unless the user specifies another period; exclude Spam and Trash. Use label-list/search operations supported by the connector, resolving labels by actual names or supported label IDs rather than assuming `label:<id>` works. A single recent-mail search with returned label IDs may cover this efficiently; supplement it where label coverage is missing.
+- **Repeated unwanted mail:** use the same 30-day window to measure suspected recurring senders or campaigns. Follow pagination; do not infer volume from a handful of snippets.
+
+Deduplicate by stable message ID and group conversations by thread ID so mail appearing in multiple labels is reviewed once. Record the observed time window, pagination completeness, and folder coverage. If a service limit prevents a complete review, state the gap and continue supported work; do not claim an all-history cleanup or complete folder coverage. Do not silently change the 30-day window into an arbitrary top-results sample.
+
+## 2. Sort and review
+
+Before assigning labels, remove all existing user-created labels from confirmed future-snoozed messages. Recheck snooze state immediately before changing each target; skip mail whose snooze has ended. Preserve system labels, unread/read status, stars, and the snooze date. Use message-level changes when a conversation contains mail with different snooze states. Read back the affected messages to verify user labels are gone and snooze/read state is preserved; report verification gaps. Exclude future-snoozed mail from all additive labeling and filing corrections during this run so the cleanup does not reapply those labels. Do not create a filter for this behavior. Labels will not automatically return when snoozing ends; a later cleanup can label the returned mail normally.
+
+Use sender, subject, snippet, and current labels for obvious cases; read the thread when context matters.
+
+- **Clear existing-label match for unlabeled inbox mail:** apply the existing label additively, with label creation disabled. Read back the resulting label IDs. Leave no-fit mail unchanged rather than inventing a category.
+- **Possible misfiling:** flag the current label and proposed existing-label correction, with a short reason. Read the content when needed to establish the mismatch. Multiple labels may be intentional; do not call a message misfiled merely because another label also fits. Suggest removing a label only when it is clearly wrong, and apply corrections only after the user approves them.
+- **Junk/promotional noise:** nominate clearly unwanted sales campaigns, repeated offers, review-request nags, and similar messages regardless of whether they are in the inbox, an existing user label, or archived. Already being labeled does not make a message useful. A receipt, transaction, booking, account/security notice, appointment, or personal correspondence is not junk merely because the sender also advertises. Inspect ambiguous messages before nominating them. If the user explicitly asks to mark junk as read, mark only the confirmed junk candidates read across the full reviewed scope, including already-labeled and archived mail; do not limit this to the inbox or the current label. Preserve unread status on keep/uncertain messages, snoozed mail, and all other messages. Verify the targeted messages no longer carry UNREAD.
+- **Keep/uncertain:** preserve held-back items and unclear cases; explain uncertainty briefly when it affects the decision.
+
+Do not automatically archive, unsubscribe, block senders, mark spam, trash messages, mark messages read, or remove labels beyond the future-snoozed cleanup above during review. Mark messages read only when the user explicitly requests that action, and then only for confirmed candidates within the requested scope.
+
+## 3. Suggest targeted filters
+
+When the review shows repeated unwanted mail, count actual matching messages over the stated window and inspect representative content. Three or more unwanted messages from the same sender/campaign is a useful cue, not an automatic verdict; favor patterns that are clearly repetitive and unwanted, and respect keep exclusions.
+
+For each useful proposal, show:
+- Pattern and measured volume, for example “8 promotional messages in 30 days.”
+- Exact proposed Gmail matching criteria or equivalent search query, grounded in observed sender/subject/list identifiers.
+- Proposed action: use an existing label, skip the inbox/archive, or move to Trash, according to the user's preference and what the live filter API supports.
+- Whether it applies only to future mail or also to the matching existing messages. Default to future mail; applying it retrospectively needs explicit approval.
+
+Test the proposed matching query against existing mail and inspect representative matches, especially receipts and account notices. Narrow mixed-purpose senders to promotional subjects or list identifiers when possible. Avoid a whole-domain trash rule that could catch useful mail. If a safe distinction cannot be made, explain that and suggest an existing-label or inbox-skip rule rather than automatic trashing. If an equivalent filter already exists, report it; propose a specific adjustment only when warranted.
+
+Filters are suggestions until individually approved. If filter-list/create/update operations are unavailable, provide the exact proposed rule for review and state the capability gap; never claim a filter was created. Creating a filter does not authorize unsubscribing, sender blocking, or retroactive trashing.
+
+## 4. Present one compact approval bundle
+
+Lead with counts, then show only the decisions the user needs:
+
+1. **Delete candidates:** stable numbered rows with subject, sender, current folder(s), and a short reason. Group an obvious campaign if useful, but retain the exact underlying IDs and count so selective approval is unambiguous.
+2. **Filing corrections:** numbered current-label → proposed-label changes with reasons; distinguish additive labeling from removal.
+3. **Filter suggestions:** numbered rules with observed volume, precise criteria, proposed actions, and future/retroactive scope.
+
+Keep candidate identifiers stable across replies. Approval for one category does not approve another. Resolve “delete all except…” against the displayed deletion list and preserve exceptions. Do not ask again for already authorized actions or ask about clear additive inbox labels already applied.
+
+## 5. Apply approved actions and verify
+
+Trash only the exact approved messages/threads using the connector's actual targeting semantics. A mixed conversation containing useful mail must not be trashed wholesale unless explicitly approved. Apply only the approved label changes and filter rules. Read back affected labels and Trash state; fetch created/updated filter criteria and actions when possible. Do not treat a successful request alone as proof that every intended item changed.
+
+Finish with concise counts: labeled, marked read (when explicitly requested), snoozed messages with user labels removed, trashed, corrected, filters created/updated, kept, and unresolved. State the reviewed window and any coverage or verification gaps. If the user has not approved proposals yet, finish at the approval bundle and wait rather than claiming cleanup complete.

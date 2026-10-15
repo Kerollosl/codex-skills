@@ -1,0 +1,22 @@
+[
+  {"query": "can we put these in their appropriate country page in notion: 1. Batumi Georgia\n   - https://www.instagram.com/reel/DZkudhjNcSo/\n\n2. Italy\n   - https://www.instagram.com/reel/DZkVl-hoDEd/", "should_trigger": true},
+  {"query": "add these to my travel pages: Turkey - https://www.instagram.com/reel/DZrbpeAoHM-/ and Greece - https://www.instagram.com/reel/DZdTDULIbUR/", "should_trigger": true},
+  {"query": "save this to notion\nhttps://www.instagram.com/reel/DZmSVT-SieX/\nChina", "should_trigger": true},
+  {"query": "Germany:\n- https://www.instagram.com/p/DZCwnfmDyCj/\n- https://www.instagram.com/p/DZchykdjgJt/\nput these in my notion", "should_trigger": true},
+  {"query": "forgot to add this one — Vietnam https://www.instagram.com/reel/DZMim3aN-5s/", "should_trigger": true},
+  {"query": "Canary Islands\nhttps://www.instagram.com/reel/DY92Vs_MT-V/\n\nPalma Mallorca\nhttps://www.instagram.com/reel/DZm6AaBocc8/\n\nthese should go in my travel notion", "should_trigger": true},
+  {"query": "add this reel to spain: https://www.instagram.com/reel/DZESO9DoG8c/", "should_trigger": true},
+  {"query": "1. Japan - https://youtube.com/shorts/abc123\n2. Morocco - https://www.instagram.com/reel/xyz456/\ncan you put these in notion pls", "should_trigger": true},
+  {"query": "add to my notion travel pages:\n- Portugal: https://www.instagram.com/reel/aaa111/\n- Netherlands: https://www.instagram.com/reel/bbb222/\n- Thailand: https://www.instagram.com/reel/ccc333/", "should_trigger": true},
+  {"query": "can we create a new page in notion for my trip to France next summer?", "should_trigger": false},
+  {"query": "find the page id for my Italy page in notion", "should_trigger": false},
+  {"query": "add a new database property to my countries notion database", "should_trigger": false},
+  {"query": "here are some instagram reels i liked today:\nhttps://www.instagram.com/reel/abc/\nhttps://www.instagram.com/reel/def/\ncan you save them somewhere?", "should_trigger": false},
+  {"query": "search notion for pages about Japan", "should_trigger": false},
+  {"query": "what restaurants did i save in rome?", "should_trigger": false},
+  {"query": "update my germany notion page title", "should_trigger": false},
+  {"query": "can you scrape this instagram profile and tell me what restaurants they've been to? https://www.instagram.com/someaccount/", "should_trigger": false},
+  {"query": "add a task to todoist: research hotels in Turkey", "should_trigger": false},
+  {"query": "can you look at this instagram reel and tell me where this place is? https://www.instagram.com/reel/DZkudhjNcSo/", "should_trigger": false},
+  {"query": "i want to update my travel database to add a new column for visa requirements", "should_trigger": false}
+]

@@ -1,0 +1,4 @@
+interface:
+  display_name: Impeccable
+  short_description: Critique or polish an existing frontend interface
+  default_prompt: Use Impeccable to redesign, critique, audit, or polish this frontend.
