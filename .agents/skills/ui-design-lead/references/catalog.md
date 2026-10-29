@@ -1,189 +1,128 @@
-# Skill catalog
+# Repository skill catalog
 
-Every skill `ui-design-lead` can dispatch to, with the boundaries. When two look close,
-the "Don't use when" and "Conflicts with" lines are what separate them.
+Use this map to choose a specialist, then read its actual SKILL.md. Paths are relative
+to this reference file. The linked label is the frontmatter name; a differing directory
+alias appears in parentheses. Resolve aliases by file path rather than inventing commands.
 
-Taste Skill v2 is installed as `design-taste-frontend`; route to that skill for marketing
-sites and portfolios when the project is not on Impeccable. The official `frontend-design`
-plugin is superseded by the skills below.
+The catalog covers all 60 active top-level skill folders at this revision,
+including this orchestrator. New or changed sibling SKILL.md metadata takes precedence;
+rediscover it when this map does not fit. Exclude system-reference snapshots from active
+routing. Tools, connections, and local dependencies must still be available.
 
----
+## Contents
 
-## Full-authority build / redesign skills
+- [Web workflows and visual direction](#web-workflows-and-visual-direction)
+- [Native mobile implementation and design services](#native-mobile-implementation-and-design-services)
+- [Brand, image concepts, and reference implementation](#brand-image-concepts-and-reference-implementation)
+- [Browser operation, automation, and verification](#browser-operation-automation-and-verification)
+- [Engineering and repository health](#engineering-and-repository-health)
+- [Research, extraction, and file operations](#research-extraction-and-file-operations)
+- [Notion and knowledge workflows](#notion-and-knowledge-workflows)
+- [Personal productivity and connected accounts](#personal-productivity-and-connected-accounts)
+- [Skill management, output support, and this orchestrator](#skill-management-output-support-and-this-orchestrator)
 
-Exactly one of these runs per pass. They produce production code and own the whole design.
+## Web workflows and visual direction
 
-### impeccable
-- **Invoke:** `/impeccable <command> <target>` — see the cheat sheet in `diagnosis.md`.
-- **Produces:** production frontend code, plus a managed context system (`PRODUCT.md`,
-  `DESIGN.md`, per-surface briefs, an optional detector hook).
-- **Use when:** the project already carries impeccable artifacts (the common case for this
-  user); the task maps to one of its ~22 sub-commands; the surface is product-shaped
-  (app, dashboard, settings, editor, forms, tools, components); the user wants systematic
-  rigor, a scored critique, or live in-browser iteration.
-- **Don't use when:** the user explicitly wants a lighter one-off pass and the project has
-  no artifacts — `redesign-existing-projects` or `design-taste-frontend` is less overhead.
-- **Pairs with:** `full-output-enforcement` (large builds); `high-end-visual-design` /
-  `gpt-taste` as taste overlays loaded before a build command; `browser-harness` /
-  `playwright-cli` for screenshots.
-- **Conflicts with:** `design-taste-frontend`, `redesign-existing-projects` — never run two
-  full-authority skills together.
+| Skill | Use for | Boundary / handoff |
+|---|---|---|
+| [frontend-design](../../frontend-design/SKILL.md) | Build new websites, dashboards, product screens, and components. | General new-build route; honor the existing stack and brand. |
+| [design-taste-frontend](../../design-taste-frontend/SKILL.md) | Build or redesign marketing sites and portfolios. | Excludes dashboards, data tables, and multistep product UI. |
+| [impeccable](../../impeccable/SKILL.md) | Managed UI design, critique, refinement, and current command playbooks. | Reuse incumbent context; load the command reference before acting. |
+| [project-ui-redesign](../../redesign-existing-projects/SKILL.md) (folder: `redesign-existing-projects`) | Redesign an existing built-out interface. | Needs an incumbent; platform specialists own native implementation. |
+| [high-end-ui](../../high-end-visual-design/SKILL.md) (folder: `high-end-visual-design`) | Apply premium typography, spacing, color, and finish. | Visual overlay; avoid competing style presets. |
+| [ui-gsap-taste](../../gpt-taste/SKILL.md) (folder: `gpt-taste`) | Build advanced GSAP and scroll interactions for websites. | Web motion, not native gesture code. |
+| [emil-design-eng](../../emil-design-eng/SKILL.md) | Polish web components, interactions, transitions, and perceived performance. | Interaction specialist, not a second full redesign. |
+| [minimalist-ui](../../minimalist-ui/SKILL.md) | Apply warm, restrained editorial styling. | Owns aesthetic decisions for that pass. |
+| [brutalist-ui](../../industrial-brutalist-ui/SKILL.md) (folder: `industrial-brutalist-ui`) | Apply Swiss, terminal, mechanical, or blueprint styling. | Owns aesthetic decisions; preserve task usability. |
+| [ui-ux-pro-max](../../ui-ux-pro-max/SKILL.md) | Consult static UI/UX and accessibility heuristics. | Supporting reference, not the default critique workflow. |
+| [web-design-guidelines](../../web-design-guidelines/SKILL.md) | Review web UI code against current Vercel interface guidelines. | Fetch current rules; focused code review rather than full visual redesign. |
 
-### design-taste-frontend
-- **Invoke:** by name.
-- **Produces:** landing pages, portfolios, and marketing-site redesigns — with a "design
-  read" (page kind / audience / vibe), three dials (variance / motion / density), and an
-  honest map to real design systems (Fluent, Carbon, Material, Polaris, Atlaskit, Primer,
-  GOV.UK, USWDS, Radix, shadcn, Tailwind).
-- **Use when:** greenfield or redesign of a **marketing site or portfolio**, especially
-  when the right foundation/aesthetic is unclear and you want the skill to infer it; the
-  project is *not* on impeccable's system.
-- **Don't use when:** dashboards, data tables, multi-step product UI, app shells — the skill
-  itself refuses these. Also skip it when the project has `PRODUCT.md` / `DESIGN.md` — stay
-  on impeccable for consistency.
-- **Pairs with:** `high-end-visual-design` or `gpt-taste` overlay; `imagegen-frontend-web`
-  upstream.
-- **Conflicts with:** impeccable, `redesign-existing-projects`.
+## Native mobile implementation and design services
 
-### redesign-existing-projects
-- **Invoke:** by name.
-- **Produces:** targeted upgrades to an existing site or app — scan, diagnose against a
-  fixed audit (typography, color, layout, states, motion), fix in place without breaking
-  functionality. Stack-agnostic.
-- **Use when:** "make my existing thing better / more premium / less generic", the project
-  has **no impeccable artifacts**, it is product-shaped (so `design-taste-frontend` does
-  not apply), and there is a **genuinely built-out UI** to audit.
-- **Don't use when:** artifacts exist (use `/impeccable critique` → `polish`); it is a
-  marketing site / portfolio (use `design-taste-frontend`); it is a from-scratch build; or
-  the "existing" code is scaffold-level stubs — with nothing to audit it is a new build,
-  route through `/impeccable shape` (+ `init`).
-- **Pairs with:** `browser-harness` for before/after screenshots.
-- **Conflicts with:** impeccable, `design-taste-frontend`.
+| Skill | Use for | Boundary / handoff |
+|---|---|---|
+| [ios-ui-design](../../mobile-ios-design/SKILL.md) (folder: `mobile-ios-design`) | Choose iOS HIG patterns and native SwiftUI design direction. | Pair with SwiftUI Expert for implementation correctness. |
+| [swiftui-expert-skill](../../swiftui-expert-skill/SKILL.md) | Implement, review, or refactor SwiftUI across iOS and macOS. | Includes layout, state, animation, accessibility, and profiling references. |
+| [expo-overview](../../expo-overview/SKILL.md) | Identify Expo goals, SDK constraints, and the right installed leaf. | Use for actual Expo/EAS work; optional upstream modules may be absent. |
+| [expo-native-ui](../../expo-native-ui/SKILL.md) | Build native-feeling Expo screens and platform styling. | Consult expo-ui for native controls; router and animation own their layers. |
+| [expo-ui](../../expo-ui/SKILL.md) | Use real SwiftUI/Compose controls through @expo/ui. | Check SDK support; use virtualized RN lists for large data. |
+| [expo-router](../../expo-router/SKILL.md) | Implement Expo stacks, tabs, sheets, links, and navigation. | Navigation responsibility, not a whole styling or animation workflow. |
+| [expo-animation](../../expo-animation/SKILL.md) | Implement Expo motion, gestures, haptics, and keyboard-driven UI. | Respect reduced motion and UI-thread behavior. |
+| [expo-design-system](../../expo-design-system/SKILL.md) | Create or maintain Expo tokens and reusable component conventions. | Extend the incumbent theme instead of introducing a second system. |
+| [sleek-mobile-design](../../sleek-design-mobile-apps/SKILL.md) (folder: `sleek-design-mobile-apps`) | Create, inspect, or edit Sleek projects and screens. | Requires configured Sleek access; use returned code when implementing. |
+| [stitch-ui-design](../../stitch-design-taste/SKILL.md) (folder: `stitch-design-taste`) | Produce semantic design-system instructions for Google Stitch. | Design specification; not application implementation. |
 
----
+## Brand, image concepts, and reference implementation
 
-## Taste overlays (load before a build skill — not standalone workflows)
+| Skill | Use for | Boundary / handoff |
+|---|---|---|
+| [brand-kit](../../brandkit/SKILL.md) (folder: `brandkit`) | Generate brand identity, logos, guidelines boards, and visual worlds. | Brand output, not an automatic app build. |
+| [web-image-direction](../../imagegen-frontend-web/SKILL.md) (folder: `imagegen-frontend-web`) | Generate website section design references. | One horizontal image per section; images are not working code. |
+| [mobile-image-direction](../../imagegen-frontend-mobile/SKILL.md) (folder: `imagegen-frontend-mobile`) | Generate mobile screen and flow concepts. | Image deliverable; follow with native implementation only if requested. |
+| [image-to-code](../../image-to-code/SKILL.md) | Implement a website from a supplied or generated visual reference. | Use for visual fidelity; not the native implementation default. |
 
-### high-end-visual-design
-- **Invoke:** by name, before the primary build skill.
-- **Provides:** agency / Awwwards-tier rules — banned fonts (Inter, Roboto, Arial), banned
-  icons, banned shadows/borders, the "Double-Bezel" nested-card technique, a vibe+layout
-  variance engine, spring-physics motion choreography, GPU-safe performance guardrails.
-- **Use when:** the brief is "make it feel expensive / like a $150k agency site / Linear-
-  tier / Apple-esque" and no fixed style preset is named. Best on premium consumer and
-  SaaS marketing.
-- **Don't use when:** a style preset (`minimalist-ui`, `industrial-brutalist-ui`) is already
-  chosen — their bans collide. Or when the user wants restraint (its default is maximal).
-- **Pairs with:** impeccable new-work, `design-taste-frontend`, `gpt-taste`.
+## Browser operation, automation, and verification
 
-### gpt-taste
-- **Invoke:** by name, before the primary build skill.
-- **Provides:** GSAP motion engineering (scroll pinning, stacking, scrubbing, card
-  stacking), strict AIDA page structure, wide editorial typography (bans 4+ line H1
-  wraps), gapless `grid-flow-dense` bento grids, inline typography images, massive section
-  spacing, a mandatory pre-flight `<design_plan>`.
-- **Use when:** a marketing / landing site where **scroll choreography and motion are the
-  point**, not a garnish.
-- **Don't use when:** product UI (motion should be subtle there — use `/impeccable
-  animate`); a style preset is chosen; the user wants a calm/static feel.
-- **Pairs with:** `design-taste-frontend`, `high-end-visual-design`, `imagegen-frontend-web`.
+| Skill | Use for | Boundary / handoff |
+|---|---|---|
+| [webapp-testing](../../webapp-testing/SKILL.md) | Verify a local web application's behavior and rendered UI. | Use available browser tools; match tests to the changed behavior. |
+| [playwright](../../playwright/SKILL.md) | Automate a browser through the supported terminal runtime. | Browser operation; follow current session restrictions. |
+| [playwright-builder](../../playwright-builder/SKILL.md) | Build or repair a reusable third-party browser script. | Prefer repeatable automation over a one-off extraction. |
+| [browser-harness](../../browser-harness/SKILL.md) | Use a permitted existing Chrome/CDP session. | Live session must be available; connectors take precedence when sufficient. |
+| [chrome-extension-development](../../chrome-extension-dev/SKILL.md) (folder: `chrome-extension-dev`) | Build, debug, and test Chrome extensions. | Manifest, content scripts, popup, and background behavior. |
 
----
+## Engineering and repository health
 
-## Style presets (terminal — they own the whole look)
+| Skill | Use for | Boundary / handoff |
+|---|---|---|
+| [anthropic-api](../../claude-api/SKILL.md) (folder: `claude-api`) | Build with Claude API, Anthropic SDKs, or Agent SDK. | Only for Anthropic-specific work. |
+| [mcp-server-builder](../../mcp-builder/SKILL.md) (folder: `mcp-builder`) | Build an MCP server integration. | Server architecture and tool design, not ordinary app UI. |
+| [code-simplifier](../../code-simplifier/SKILL.md) | Refactor for clarity while preserving behavior. | Use when cleanup is requested; avoid unrelated rewrites. |
+| [project-audit](../../project-auditor/SKILL.md) (folder: `project-auditor`) | Review project or portfolio health and technical debt. | Scope to requested projects; do not run a portfolio audit automatically. |
+| [repo-secret-sweep](../../repo-secret-sweep/SKILL.md) | Audit owned repositories for accidentally committed secrets. | Explicit sweep scope; never expose discovered secret values. |
 
-### minimalist-ui
-- **Invoke:** by name.
-- **Provides:** warm-monochrome editorial "document-style" UI — off-white canvas, editorial
-  serif headings + geometric sans body, muted pastel spot accents, flat 1px-border bento,
-  crisp small radii, near-invisible shadows, no gradients, no pill-shaped large containers.
-- **Use when:** the user names "minimal / warm / editorial / Notion-like / muted / calm /
-  no gradients".
-- **Don't use when:** the brief wants boldness, dark tech, heavy motion, or a specific
-  different aesthetic.
-- **Conflicts with:** `high-end-visual-design`, `gpt-taste`, `industrial-brutalist-ui`.
+## Research, extraction, and file operations
 
-### industrial-brutalist-ui
-- **Invoke:** by name.
-- **Provides:** Swiss print × military-terminal UI — pick one substrate (light newsprint or
-  dark CRT), monolithic grotesk macro-type + monospace telemetry micro-type, hazard red as
-  the only accent, zero border-radius, visible grid compartmentalization, analog
-  degradation (halftone, scanlines, dithering, grain).
-- **Use when:** the user names "brutalist / terminal / CRT / Swiss / blueprint /
-  declassified / tactical / industrial / HUD"; data-heavy dashboards, portfolios, or
-  editorial sites that should feel like classified documents.
-- **Don't use when:** consumer-friendly, soft, or premium-luxury briefs.
-- **Conflicts with:** `high-end-visual-design`, `gpt-taste`, `minimalist-ui`.
+| Skill | Use for | Boundary / handoff |
+|---|---|---|
+| [ai-weekly](../../ai-weekly/SKILL.md) | Run Kero's AI watch digest. | Use its named digest workflow; dependencies may be environment-specific. |
+| [web-scraper](../../web-scraper/SKILL.md) | Extract structured public web data with HTTP parsing. | Use when a connector or interactive session is not needed. |
+| [instagram-post-scraper](../../instagram-scraper/SKILL.md) (folder: `instagram-scraper`) | Extract tagged businesses, accounts, and places from Instagram posts. | Post content extraction, not follower relationships. |
+| [instagram-followers](../../instagram-followers-scraper/SKILL.md) (folder: `instagram-followers-scraper`) | Export Instagram follower or following relationships. | Reusable script and CSV output; requires supported session access. |
+| [notebooklm-bulk-research](../../notebooklm-scraper/SKILL.md) (folder: `notebooklm-scraper`) | Gather bulk source material for NotebookLM research. | Research and ingestion across a structured entity list. |
+| [notebooklm](../../notebooklm/SKILL.md) | Query or manage NotebookLM notebooks and source ingestion. | Requires supported service access. |
+| [semantic-file-extractor](../../bulk-extract-semantic/SKILL.md) (folder: `bulk-extract-semantic`) | Extract cross-file themes, facts, and searchable meaning. | Content analysis across files, not file reorganization. |
+| [bulk-file-operations](../../bulk-file-operations/SKILL.md) | Rename, organize, deduplicate, merge, or move many files. | Use reversible plans and count checks. |
 
----
+## Notion and knowledge workflows
 
-## Image-generation pipeline (runs before code, never after)
+| Skill | Use for | Boundary / handoff |
+|---|---|---|
+| [notion-lookup](../../notion-lookup/SKILL.md) | Find a Notion page or database by name. | Resolve the target before edits; verify lookup freshness if needed. |
+| [notion-api](../../notion-api/SKILL.md) | Use the Notion REST API when connected tools are insufficient. | API fallback, not the first choice over a sufficient connector. |
+| [notion-recipe-creator](../../notion-recipe-creator/SKILL.md) | Create structured Notion recipes from dishes or source material. | Recipe database workflow, not generic Notion content. |
+| [notion-travel-links](../../notion-travel-links/SKILL.md) | Save destination-plus-URL content to Notion travel pages. | Travel link ingestion; use lookup for finding a page. |
 
-### imagegen-frontend-web
-- **Invoke:** by name.
-- **Produces:** one horizontal reference image **per section** (8 sections → 8 images),
-  with composition variety, varied hero scales, a narrative concept spine, one consistent
-  palette. For landing pages, marketing sites, product comps.
-- **Use when:** the user wants to see the design as images before any code, or wants
-  polished comps to hand to a developer.
-- **Then:** review with the user → build route (`image-to-code` for pixel-faithful, else
-  the chosen images become the brief for the normal build route).
+## Personal productivity and connected accounts
 
-### imagegen-frontend-mobile
-- **Invoke:** by name.
-- **Produces:** premium mobile app screen and flow images inside phone mockups. iOS /
-  Android / cross-platform. **Images only — no code.**
-- **Use when:** concepting mobile app screens or flows before implementation.
-- **Don't use when:** websites, desktop dashboards, or anything that needs code now.
+| Skill | Use for | Boundary / handoff |
+|---|---|---|
+| [todoist-api](../../todoist-api/SKILL.md) | Read or change Todoist tasks, projects, and labels. | Task data operations through supported tools/CLI. |
+| [todoist-router](../../todoist-task-router/SKILL.md) (folder: `todoist-task-router`) | Classify and execute Todoist Inbox workflows. | Use its route configuration and applicable authorization. |
+| [calendar-cleanup](../../calendar-cleanup/SKILL.md) | Review a calendar week and apply authorized organization fixes. | Calendar efficiency, not yearly reflection. |
+| [yearly-review](../../yearly-review/SKILL.md) | Summarize a requested calendar year from Google Calendar. | Read-only review, not event edits. |
+| [email-cleanup](../../email-cleanup/SKILL.md) | Review Gmail filing, junk, and proposed filters. | Apply only authorized filing, trash, and filter changes. |
+| [drive-organizer](../../gdrive-organizer/SKILL.md) (folder: `gdrive-organizer`) | Organize Drive files or a folder collection. | File organization; preserve its applicable approval boundary. |
+| [personal-finance-reporting](../../personal-finance-reporting/SKILL.md) | Update Kero's Monthly Finances Budget from connected finances. | Specific budget reconciliation, not general investment research. |
+| [linkedin-profile-cleanup](../../linkedin-cleanup/SKILL.md) (folder: `linkedin-cleanup`) | Improve headline, about, experience, and skills on LinkedIn. | Use its before/after review and authorized edit workflow. |
 
-### image-to-code
-- **Invoke:** by name.
-- **Produces:** generates section reference images itself, analyzes them deeply, then
-  implements the site to match them closely. Codex-oriented; favors large readable
-  section-specific images.
-- **Use when:** the user wants the built result to match a generated design as closely as
-  possible — visual fidelity is the priority.
-- **Don't use when:** the user already has a clear brief and just wants a good build (use
-  the normal route); mobile (use `imagegen-frontend-mobile`).
+## Skill management, output support, and this orchestrator
 
-### brandkit
-- **Invoke:** by name.
-- **Produces:** brand-guidelines boards, logo systems, identity decks, visual-world
-  presentations — a complete brand world in one image. Dark charcoal canvas, grid boards,
-  sparse type, premium mockups.
-- **Use when:** the task is brand identity, not interface — logos, brand systems,
-  guidelines decks.
+| Skill | Use for | Boundary / handoff |
+|---|---|---|
+| [skill-discovery](../../find-skills/SKILL.md) (folder: `find-skills`) | Discover suitable installable skills. | Search when a capability is missing or discovery is requested; no automatic install. |
+| [improve-skills](../../improve-skills/SKILL.md) | Audit skill quality, routing, and usage; apply requested repairs. | Read-only unless repair scope is authorized. |
+| [full-output](../../full-output-enforcement/SKILL.md) (folder: `full-output-enforcement`) | Ensure exhaustive code or other unabridged output. | Supporting output policy; does not select the implementation workflow. |
+| [concise-response](../../caveman/SKILL.md) (folder: `caveman`) | Apply the explicitly requested compressed response style. | Communication overlay; does not change task scope or correctness. |
+| [ui-design-lead](../../ui-design-lead/SKILL.md) | Coordinate the repository's skill workflows. | Do not recursively dispatch back to this orchestrator. |
 
----
-
-## Tool-specific
-
-### stitch-design-taste
-- **Invoke:** by name.
-- **Produces:** a `DESIGN.md` file tuned for Google Stitch's semantic design language —
-  atmosphere, calibrated color, typographic architecture, component behaviors, motion
-  philosophy, an anti-pattern list.
-- **Use when:** the user is generating screens in Google Stitch (labs.google/stitch) and
-  needs a design spec to prompt it with.
-- **Don't use when:** any non-Stitch workflow — this does not produce app code.
-
----
-
-## Support
-
-### full-output-enforcement
-- **Invoke:** by name, alongside a build skill.
-- **Provides:** bans placeholder patterns (`// ...`, "rest follows the same pattern"),
-  enforces complete multi-file output, clean `[PAUSED — X of Y]` splits at token limits.
-- **Use when:** the route will produce many files or long files and truncation is a real
-  risk — large redesigns, `harden`, whole-site builds.
-
-### browser-harness
-- **Invoke:** `browser-harness` CLI (see the user's global browser-harness skill).
-- **Use when:** you need to screenshot the user's **live Chrome** session for before/after
-  diagnosis and verification. First navigation is `new_tab(url)`.
-
-### playwright-cli
-- **Invoke:** by name.
-- **Use when:** you need a **fresh** browser for screenshots or visual QA — no live session
-  to attach to, or you want isolation. Also for writing/debugging Playwright test scripts.

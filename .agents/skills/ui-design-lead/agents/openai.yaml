@@ -1,7 +1,7 @@
 interface:
   display_name: "UI Design Lead"
-  short_description: "Routes frontend design work to the right skill"
-  default_prompt: "Use $ui-design-lead to diagnose this UI request and route it to the right design workflow."
+  short_description: "Orchestrates repo skills for web, mobile, and more"
+  default_prompt: "Use $ui-design-lead to choose and run the right skills from this repository for my task, then verify the result."
   brand_color: "#111827"
 policy:
   allow_implicit_invocation: true

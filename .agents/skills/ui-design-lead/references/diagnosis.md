@@ -1,186 +1,112 @@
-# Diagnosis rubric
+# Routing and diagnosis
 
-Read this when the route is not obvious from the compact map in SKILL.md. It has four
-parts:
+Use this reference when the primary workflow is unclear. Start with the requested
+deliverable and platform; only then select design or implementation specialists.
 
-1. [Classifying the task](#1-classifying-the-task)
-2. [The AI-slop fingerprint glossary](#2-the-ai-slop-fingerprint-glossary)
-3. [Per-type decision tables](#3-per-type-decision-tables)
-4. [The `/impeccable` sub-command cheat sheet](#4-the-impeccable-sub-command-cheat-sheet)
+## Contents
 
----
+1. [Task and platform](#task-and-platform)
+2. [Evidence and scope](#evidence-and-scope)
+3. [Overlap decisions](#overlap-decisions)
+4. [Useful sequences](#useful-sequences)
+5. [Verification](#verification)
 
-## 1. Classifying the task
+## Task and platform
 
-Match the request to one type. When two seem to apply, the more specific one wins
-(a "make the spacing better on my new landing page" is **targeted refinement**, not **new
-build**).
-
-| Type | Signals | Notes |
+| User wants | Decide first | Route |
 |---|---|---|
-| **New build** | "build", "create", "I need a page/screen/component for", nothing exists yet | Split on surface: product-shaped (app, dashboard, settings, editor, forms, tools) vs marketing-shaped (landing, pricing, campaign, portfolio). The split drives impeccable vs design-taste-frontend. |
-| **Redesign — preserve** | "refresh", "modernize", "tighten up", keep the structure and content | Incumbent identity stays; you are refining, not replacing. |
-| **Redesign — overhaul** | "redesign", "rethink", "it is dated", "start over on the look" | Old look is treated as anti-reference. impeccable calls this a new visual world. |
-| **Targeted refinement** | One named dimension: spacing, hierarchy, type, color, motion, copy, responsiveness, performance, a11y | Route straight to the matching `/impeccable` mode. Do not open a full redesign. |
-| **Evaluation** | "review", "audit", "critique", "what is wrong with", "roast" | `critique` (heuristic UX score) + `audit` (a11y / perf / responsive). No code changes unless asked. |
-| **Named restyle** | The user names an aesthetic: "make it brutalist", "Notion-style", "warm editorial", "terminal vibe" | Route to the style preset that owns that look. The preset is terminal — it decides fonts, color, shadows. |
-| **Reference-first** | "show me options", "mock it up first", "what would it look like", "I want to see before you code" | imagegen skill → review → then a build route. |
-| **Design system** | "tokens", "design system", "component library", "extract the patterns", "document the design" | `/impeccable init` → `shape` for greenfield; `/impeccable document` / `extract` for existing code. |
+| Working code | Existing stack and new build versus incumbent | Platform implementation specialist |
+| Visual concepts | Web/mobile/brand and image versus design-service output | Relevant image-direction, brand, or Sleek skill |
+| Evaluation | Code compliance, visual UX, native correctness, or runtime behavior | Matching review specialist; no edits unless requested |
+| Refinement | The concrete defect and existing visual identity | Focused playbook or native specialist |
+| Redesign | Preserve versus replace, and whether a built-out interface exists | Incumbent workflow or project-ui-redesign |
+| Design system | Existing theme, tokens, components, and platform | Expo Design System on Expo; incumbent web/native system elsewhere |
+| Non-UI workflow | Requested account/data/file operation | Relevant section of the full catalog; no UI phases |
 
-If the request is genuinely trivial (one property, one string) or not UI, do not classify —
-bow out per SKILL.md.
+Platform examples:
 
----
+- `*.swift` / SwiftUI project → SwiftUI Expert. Use iOS UI Design when HIG decisions need
+  attention. Do not introduce a web stack or Expo merely because the task is a mobile app.
+- `package.json` contains `expo`, or user explicitly requests Expo/EAS → Expo Overview,
+  then only the needed installed leaf skills. Read the actual SDK version.
+- Bare React Native, Compose, Flutter, or another native framework → keep that stack.
+  Use applicable general design guidance and current official framework documentation.
+- HTML/CSS/React/Vue/Svelte/etc. website → choose a web route. "Mobile responsive" is web
+  adaptation, not a request for a native application.
+- Native simulator/device unavailable → implement from source and report the verification
+  limit; do not treat a browser rendering as proof that a native app works.
 
-## 2. The AI-slop fingerprint glossary
+## Evidence and scope
 
-The `scan-fingerprints.sh` script counts these. Here is what each one means and where it
-points. Cite the specific hits in your DIAGNOSIS `Findings` line.
+Inspect what is available: task/PRD, audience, existing screens, target files, tokens,
+shared components, assets, accessibility requirements, and supported device classes.
+Preserve brand and behavior unless the user requests replacement.
 
-| Fingerprint | Why it reads as AI slop | Points toward |
-|---|---|---|
-| **Inter** as the primary/only font | The default of every AI build; zero character | `typeset`, or `high-end-visual-design` for a full type system |
-| **Purple / indigo / violet gradients** (`from-purple`, `to-indigo`, mesh) | The single most recognizable "AI made this" tell | `colorize` or `critique` → `polish`; `redesign-existing-projects` |
-| **`grid-cols-3` feature row** — three equal cards | The most overused AI layout | `layout`; `redesign-existing-projects` |
-| **`h-screen` / `100vh`** for full-height sections | Breaks on iOS Safari; signals no device testing | `adapt`, or fold into any refinement pass |
-| **`shadow-md/lg/xl`** everywhere | Generic Tailwind depth; no consistent light source | `layout` or `polish`; `high-end-visual-design` bans these |
-| **`#000000` / `bg-black`** background | Pure black never appears in considered design | `colorize` or `polish` |
-| **`outline-none`** without `focus-visible` | Accessibility failure; keyboard users lost | `audit`, then `harden` |
-| **`backdrop-blur` on many elements** | Glassmorphism-on-everything; GPU cost, no restraint | `quieter` or `polish` |
-| **`border-gray-200/300`** default hairlines | Untinted, lifeless borders | `polish`; `high-end-visual-design` |
-| **Cliché copy** — "Elevate", "Seamless", "Unleash", "Supercharge", "Delve" | AI marketing voice | `clarify` |
-| **Placeholder junk** — "Lorem ipsum", "John Doe", "Acme Corp" | Unfinished; no real content thinking | flag in `Findings`; `clarify` for copy, or send back to the user for real content |
-| **Emoji in source / headings** | Banned by every taste skill here | flag; fixed in any refinement pass |
-| **Many `text-center` blocks** | Centered-everything is a low-variance default | `layout`; `bolder` if the whole thing is timid |
+Use `PRODUCT.md` / `DESIGN.md` as evidence of workflow, not as a binary quality check.
+A missing file does not authorize replacing the current design. An empty scaffold is a
+new build; a developed interface is an incumbent even without these files.
 
-Breadth across many categories at once → the task is a **redesign** (route it by the
-Redesign table below — the scan tells you the *scope*, not the skill). A spike in one
-category with the rest quiet → the matching **targeted refinement**. The scan is a
-tiebreaker for scope, never the routing decision on its own.
+Optional web fingerprint scans surface candidates for inspection. Inter, black, centered
+text, cards, gradients, and emoji are not intrinsically defects. A concrete problem is
+"focus disappears on keyboard navigation" or "the primary action is hidden below the
+keyboard," not "the scan found a banned color." Verify suspected defects against the brief,
+rendered UI, and accessibility behavior.
 
----
+State a short diagnosis only when useful: "Expo settings screen; inconsistent tokens and
+custom controls; keep the existing theme and use native controls." Avoid scoring, fixed
+phase banners, or repeated design-plan templates unless requested by a specialist.
 
-## 3. Per-type decision tables
+## Overlap decisions
 
-### New build
-
-| Surface | Route | Overlay / sequence |
-|---|---|---|
-| Dashboard, admin, settings, editor, internal tool, data table | `/impeccable shape` → new-work | `industrial-brutalist-ui` only if the user wants the blueprint look |
-| App shell, product screen, forms, onboarding | `/impeccable shape` → new-work | — |
-| Component or small feature in an existing product | `/impeccable` general design work on the incumbent implementation | — |
-| Landing / pricing / campaign / marketing site | project on impeccable's system → `/impeccable` new-work; otherwise `design-taste-frontend` | `high-end-visual-design` (premium consumer/SaaS) or `gpt-taste` (scroll-choreography) as overlay; `imagegen-frontend-web` first if previewing |
-| Portfolio (designer / developer / studio) | `design-taste-frontend` | `imagegen-frontend-web` first if previewing |
-| Mobile app (concepts, no code yet) | `imagegen-frontend-mobile` | pair with a native build route once concepts are approved |
-| Brand identity, logo system, guidelines deck | `brandkit` | — |
-
-### Redesign
-
-First check there is a real, built-out UI to redesign. If the code is scaffold-level —
-stub components, almost nothing styled, comments standing in for content — there is no
-incumbent to audit; that is a **new build**, route it through the New build table
-(`/impeccable shape`, with `init` first).
-
-| Situation | Route |
+| Close alternatives | Choose by responsibility |
 |---|---|
-| Project carries `PRODUCT.md` / `DESIGN.md` | `/impeccable document` (only if `DESIGN.md` missing) → `/impeccable critique <surface>` → `/impeccable polish` (preserve) or `/impeccable bolder` (overhaul) |
-| No impeccable artifacts, product-shaped app, genuinely built out | `redesign-existing-projects` — and offer `/impeccable init` if the user wants this project on the system from here on |
-| No impeccable artifacts, marketing site or portfolio | `design-taste-frontend` (its redesign path: audit-first, preserve vs overhaul) |
-| User wants a scored backlog they can work down over time | `/impeccable critique` regardless — it writes a snapshot `polish` reads as its to-do list |
+| Frontend Design vs Design Taste | General new product UI/components → Frontend Design; marketing/portfolio direction → Design Taste |
+| Impeccable vs a fresh build skill | Follow established Impeccable context/playbooks when relevant; do not label other installed skills obsolete |
+| Impeccable vs Project UI Redesign | Existing managed workflow or focused critique/refinement → Impeccable; built-out interface needing a redesign outside that workflow → Project UI Redesign |
+| SwiftUI Expert vs iOS UI Design | Implementation, state, performance, modern API usage → SwiftUI Expert; HIG and native interaction choices → iOS UI Design |
+| Expo Native UI vs Expo UI | Native screen structure/styling → Native UI; native controls and component selection → UI |
+| Expo Router vs Expo Animation | Native navigation behavior → Router; custom gestures, haptics, worklets → Animation |
+| Expo UI vs custom sheet motion | Use an available native sheet/control; only build custom motion when the task requires behavior it cannot provide |
+| Emil vs GSAP vs Expo Animation | Web component interaction → Emil; web scroll choreography → GSAP; Expo motion → Expo Animation |
+| Web Guidelines vs Impeccable | Web code compliance and accessibility rules → Guidelines; hierarchy, visual world, and broader UX → Impeccable |
+| Browser Harness vs Playwright vs connector | Sufficient service connector first; permitted live session when required; supported isolated browser runtime otherwise |
+| Web Scraper vs Playwright Builder | Public static HTTP extraction → Scraper; durable interactive site script → Builder |
+| Semantic extraction vs file organization | Understand content across files → Semantic File Extractor; change names/locations/deduplicate → Bulk File Operations |
+| Native implementation vs image concept | Match the deliverable; an image generation skill does not produce a working native app |
 
-Before proposing changes, screenshot desktop + mobile **when a URL or running dev server is
-available** — the DIAGNOSIS should cite what is actually on screen. If there is no server
-and standing one up would mean writing into the project, say so and diagnose from the code;
-fold the before/after screenshots into the dispatch step instead.
+Consult the selected specialist's current SKILL.md for commands and required resources.
+For Impeccable, read its Commands table and linked playbook; use the native variant where
+provided. Do not freeze a duplicate command cheat sheet in this router.
 
-### Targeted refinement — one dimension
+## Useful sequences
 
-| Ask | Route |
-|---|---|
-| "spacing / rhythm / it feels cramped / too much whitespace / hierarchy is flat" | `/impeccable layout` |
-| "fonts / typography / headings have no presence / pick a better typeface" | `/impeccable typeset` (or `high-end-visual-design` if they want the whole type architecture rethought) |
-| "it is all grey / add some color / too monochrome" | `/impeccable colorize` |
-| "add motion / animate / it feels static" — inside a product | `/impeccable animate` |
-| "scroll animations / pinning / parallax / kinetic type" — on a marketing site | `gpt-taste` |
-| "make it bolder / it is too safe / more personality" | `/impeccable bolder`, or `/impeccable delight` for memorable touches specifically |
-| "tone it down / too much / overstimulating" | `/impeccable quieter` |
-| "too complex / strip it back / simplify" | `/impeccable distill` |
-| "error states / i18n / edge cases / production-ready" | `/impeccable harden` (+ `full-output-enforcement` if it is a large multi-file job) |
-| "empty states / first-run / new-user experience" | `/impeccable onboard` |
-| "the copy / labels / error messages / microcopy" | `/impeccable clarify` |
-| "responsive / mobile / tablet / it breaks on small screens" | `/impeccable adapt` |
-| "slow / janky / stutters / performance" | `/impeccable optimize` |
+Use only the steps demanded by the task:
 
-### Evaluation
+- New Expo settings screen: Overview → Native UI + UI → Router if navigation changes →
+  native behavior checks. Add Design System only when shared tokens/components need work.
+- Expo theme cleanup: Overview → Design System, with Native UI for platform values.
+  Preserve an existing NativeWind/Tamagui/other theme in its own idiom.
+- SwiftUI form redesign: iOS UI Design if interaction choices need work → SwiftUI Expert →
+  available build/device checks, including large text and keyboard reachability.
+- Website build from a brief: Frontend Design (or Design Taste for marketing) → one
+  compatible visual direction → behavior/visual verification.
+- Website interaction polish: Emil Design Engineering → scoped browser checks.
+- Accessibility-only code review: Web Design Guidelines → findings with locations.
+  Do not redesign or edit merely because a review identified defects.
+- Mobile concepts in Sleek: Sleek screen generation → screenshots; if implementation was
+  also requested, fetch returned component code and hand it to the target platform route.
+- Instagram places to Notion travel pages: Post Scraper → destination resolution/Lookup →
+  Travel Links. Carry source URLs through rather than rediscovering them.
+- Calendar or Gmail cleanup: relevant specialist only; preserve its actual approval
+  boundary and any authorization already provided by the user.
+- A one-property color fix: edit and verify the affected surface directly.
 
-Run both unless the user scopes it: `/impeccable critique <target>` for the UX heuristic
-score, then `/impeccable audit <target>` for a11y / perf / responsive. Screenshot first.
-Present findings; do not edit unless asked. If the score is low or P0/P1 issues exist and
-the user wants them fixed, that becomes a **redesign** or **targeted refinement** — re-route.
+## Verification
 
-### Named restyle
+Test what changed and the user journey it affects. Check meaningful edge/failure states
+when they are part of the work. Respect specialist verification requirements and available
+tooling. Report checks that could not run without claiming the result was verified.
 
-| Named aesthetic | Route |
-|---|---|
-| "minimal", "warm", "editorial", "Notion-like", "document-style", "muted", "no gradients" | `minimalist-ui` |
-| "brutalist", "terminal", "CRT", "Swiss", "blueprint", "declassified", "tactical", "industrial", "military HUD" | `industrial-brutalist-ui` |
-| "expensive", "agency", "Awwwards", "Linear-tier", "Apple-esque", "$150k site" — but no fixed style named | `high-end-visual-design` as the overlay on a build route (it is rules, not a preset) |
-
-A style preset overrides the aesthetic dials. Do not also load `high-end-visual-design` or
-`gpt-taste` on top — the bans conflict.
-
-### Reference-first
-
-1. `imagegen-frontend-web` (web) or `imagegen-frontend-mobile` (mobile) generates the
-   references — one image per section for web.
-2. User reviews and picks a direction.
-3. Build route: `image-to-code` if they want the implementation to match the images
-   pixel-for-pixel; otherwise the normal new-build route with the chosen images as the
-   brief.
-
-### Design system
-
-| Ask | Route |
-|---|---|
-| Greenfield — "set up our design system / tokens" | `/impeccable init` (captures `PRODUCT.md`) → `/impeccable shape` |
-| Existing code — "document what we have" | `/impeccable document` (generates `DESIGN.md` from the code) |
-| Existing code — "pull these patterns into reusable tokens/components" | `/impeccable extract <target>` |
-| User is prompting Google Stitch and wants a `DESIGN.md` for it | `stitch-design-taste` |
-
----
-
-## 4. The `/impeccable` sub-command cheat sheet
-
-Invoke as `/impeccable <command> <target>`. `<target>` is a file, route, or surface name.
-
-| Command | Category | Reach for it when |
-|---|---|---|
-| `shape` | Build | Planning UX/UI before any code — flows, states, structure |
-| `init` | Build | The project has no `PRODUCT.md` yet and needs durable context captured |
-| `document` | Build | Existing code, no `DESIGN.md` — reverse-engineer the visual system |
-| `extract` | Build | Pull repeated patterns into design-system tokens / components |
-| `critique` | Evaluate | UX design review with a heuristic score and a P0–P3 issue list |
-| `audit` | Evaluate | Technical quality — accessibility, performance, responsive behavior |
-| `polish` | Refine | Final pass before shipping; reads the latest `critique` as its backlog |
-| `bolder` | Refine | The design is safe / bland and should be amplified |
-| `quieter` | Refine | The design is aggressive / overstimulating and should calm down |
-| `distill` | Refine | Too much going on — strip to essence |
-| `harden` | Refine | Make it production-ready — error states, i18n, edge cases |
-| `onboard` | Refine | First-run flows, empty states, activation moments |
-| `animate` | Enhance | Add purposeful motion and micro-interactions |
-| `colorize` | Enhance | Add strategic color to a monochrome UI |
-| `typeset` | Enhance | Fix typographic hierarchy and font choices |
-| `layout` | Enhance | Fix spacing, rhythm, alignment, visual hierarchy |
-| `delight` | Enhance | Add personality and memorable touches |
-| `overdrive` | Enhance | Push past conventional limits — ambitious visual effects |
-| `clarify` | Fix | Improve UX copy, labels, error messages |
-| `adapt` | Fix | Adapt for different devices and screen sizes |
-| `optimize` | Fix | Diagnose and fix UI performance problems |
-| `live` | Iterate | In-browser variant mode — pick elements, generate alternatives (needs a running dev server; web only) |
-
-`/impeccable` with **no argument** presents its own context-aware menu — route there only
-when the user genuinely wants to browse options rather than solve a specific problem.
-
-`/impeccable doctor` reports drift in the project's impeccable artifacts. Surface it if
-`context.mjs` output or stale-looking `DESIGN.md` suggests it — but never run repairs as a
-side effect of a design task.
+Keep QA bounded. Do one inspection pass, batch observed fixes, and confirm; extend only
+for a new failure or unresolved concern. Close task-created tabs promptly, retain user
+tabs and deliverables, and finish with the result, useful validation, and a link.

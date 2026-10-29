@@ -4,6 +4,19 @@ Private, portable snapshots of the standalone skills in `~/.codex/skills` and
 `~/.agents/skills`. Personal skills live in `.agents/skills/`, which Codex discovers
 when working in this repository. `sources.json` records each local source.
 
+## One entry point for repository workflows
+
+Use [UI Design Lead](.agents/skills/ui-design-lead/SKILL.md) to choose and run the
+appropriate skills for a task. It specializes in web/mobile design and also hands
+off engineering, research, file, and connected-account work to the right specialist.
+Its [catalog](.agents/skills/ui-design-lead/references/catalog.md) covers all 60
+active skill folders and resolves directory aliases to their actual skill names;
+it checks current sibling metadata when the catalog does not fit.
+
+Example: "Use $ui-design-lead to build this Expo screen and verify its behavior."
+The orchestrator loads only the skills needed for the task and retains existing
+platform, design-system, tool-access, and authorization constraints.
+
 ## Codex Cloud
 
 Grant the Codex GitHub connection access to this private repository, then select
