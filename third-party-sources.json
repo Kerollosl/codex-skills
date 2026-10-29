@@ -1,0 +1,490 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-29",
+  "selection_basis": "Primary upstream authors; active repositories; actionable design guidance; complements existing skills rather than duplicating visual presets.",
+  "skills": [
+    {
+      "name": "expo-overview",
+      "path": ".agents/skills/expo-overview",
+      "upstream_repository": "https://github.com/expo/skills",
+      "upstream_ref": "05754e71d02abe0d2d7a2fb5259ccac41f5ea59c",
+      "upstream_path": "plugins/expo/skills/expo-overview",
+      "license": "MIT",
+      "license_evidence": "https://github.com/expo/skills/blob/05754e71d02abe0d2d7a2fb5259ccac41f5ea59c/LICENSE",
+      "upstream_stars_at_review": 3751,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "upstream_blob_sha": "8d4fc1a52c7207d76826162bb349f59e87367a94"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "upstream_blob_sha": "f64422bcca68c00f1d6f1154fd5d44cdc8e1dfd0"
+        },
+        {
+          "path": "references/launch-without-dev-menu.md",
+          "upstream_blob_sha": "de4856a162b0627c0178103a29fc9969270bb301"
+        }
+      ],
+      "adaptations": [
+        "Require explicit user instruction before external feedback",
+        "Explain focused snapshot scope and fallback for optional modules",
+        "Avoid implying that the optional EAS native-ios reference exists locally"
+      ]
+    },
+    {
+      "name": "expo-native-ui",
+      "path": ".agents/skills/expo-native-ui",
+      "upstream_repository": "https://github.com/expo/skills",
+      "upstream_ref": "05754e71d02abe0d2d7a2fb5259ccac41f5ea59c",
+      "upstream_path": "plugins/expo/skills/expo-native-ui",
+      "license": "MIT",
+      "license_evidence": "https://github.com/expo/skills/blob/05754e71d02abe0d2d7a2fb5259ccac41f5ea59c/LICENSE",
+      "upstream_stars_at_review": 3751,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "upstream_blob_sha": "9bd26c48aab5682031b7a0b592148980252ca238"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "upstream_blob_sha": "b41117eac0d64ecd7da917e692d62eb127b18ebc"
+        },
+        {
+          "path": "references/controls.md",
+          "upstream_blob_sha": "05865bde831d647faae39fb3a8960bdc119f1b4f"
+        },
+        {
+          "path": "references/gradients.md",
+          "upstream_blob_sha": "329600dc1d3c683dcc15b29ee7bc61e112acb6a6"
+        },
+        {
+          "path": "references/icons.md",
+          "upstream_blob_sha": "d23ac8f14586a2539993b645561e37e39393de3e"
+        },
+        {
+          "path": "references/media.md",
+          "upstream_blob_sha": "65813b4e20c6f532cd55c93a411471b887d7be24"
+        },
+        {
+          "path": "references/storage.md",
+          "upstream_blob_sha": "c084f121367b6e9a6393af7f8c10b9247ccde108"
+        },
+        {
+          "path": "references/visual-effects.md",
+          "upstream_blob_sha": "fdf312a6c81979df0e9cd14df88c3f22d2e4e3c7"
+        },
+        {
+          "path": "references/webgpu-three.md",
+          "upstream_blob_sha": "58b5ce8046255f2c729b338da837a7e18804c356"
+        }
+      ],
+      "adaptations": [
+        "Require explicit user instruction before external feedback"
+      ]
+    },
+    {
+      "name": "expo-ui",
+      "path": ".agents/skills/expo-ui",
+      "upstream_repository": "https://github.com/expo/skills",
+      "upstream_ref": "05754e71d02abe0d2d7a2fb5259ccac41f5ea59c",
+      "upstream_path": "plugins/expo/skills/expo-ui",
+      "license": "MIT",
+      "license_evidence": "https://github.com/expo/skills/blob/05754e71d02abe0d2d7a2fb5259ccac41f5ea59c/LICENSE",
+      "upstream_stars_at_review": 3751,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "upstream_blob_sha": "6dcb120166e47a424b0a681057077863d3a09628"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "upstream_blob_sha": "585e24d3764bef685a79b011499f79b5915f7fc3"
+        },
+        {
+          "path": "references/drop-in-replacements.md",
+          "upstream_blob_sha": "d462ada88e38d8f1d54279dc2961e60e861ba90d"
+        },
+        {
+          "path": "references/jetpack-compose.md",
+          "upstream_blob_sha": "1096a57c3e9a394ae2aa93d4fb556f5663e07ee1"
+        },
+        {
+          "path": "references/swift-ui.md",
+          "upstream_blob_sha": "480ec90f671c4f1ab8f04996cfc94a10d7b1ac5e"
+        },
+        {
+          "path": "references/universal.md",
+          "upstream_blob_sha": "3271d5451b66bb6ada37acb777b4a9d3721969f2"
+        },
+        {
+          "path": "scripts/list-components.js",
+          "upstream_blob_sha": "3a64f7d1dd6d42abff320f65ab81cf7680d71e78"
+        }
+      ],
+      "adaptations": [
+        "Require explicit user instruction before external feedback"
+      ]
+    },
+    {
+      "name": "expo-router",
+      "path": ".agents/skills/expo-router",
+      "upstream_repository": "https://github.com/expo/skills",
+      "upstream_ref": "05754e71d02abe0d2d7a2fb5259ccac41f5ea59c",
+      "upstream_path": "plugins/expo/skills/expo-router",
+      "license": "MIT",
+      "license_evidence": "https://github.com/expo/skills/blob/05754e71d02abe0d2d7a2fb5259ccac41f5ea59c/LICENSE",
+      "upstream_stars_at_review": 3751,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "upstream_blob_sha": "f7abac62220bf2c8508bf20d3421e640487d0aa3"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "upstream_blob_sha": "a314bc85a701a0464b6408fa3a0dbd4624984901"
+        },
+        {
+          "path": "references/form-sheet.md",
+          "upstream_blob_sha": "1ed80fb6f4e0c01104768079156381865a9dddd8"
+        },
+        {
+          "path": "references/route-structure.md",
+          "upstream_blob_sha": "b552729a4d9b845b482f69d002433e146c1b41ab"
+        },
+        {
+          "path": "references/search.md",
+          "upstream_blob_sha": "9ca13bd58396a4aa9c4eb8e5a5fc21de552e8f86"
+        },
+        {
+          "path": "references/tabs.md",
+          "upstream_blob_sha": "f689f74c506c04bc28a01ba6106ed2d77810e564"
+        },
+        {
+          "path": "references/toolbar-and-headers.md",
+          "upstream_blob_sha": "9706b8d3f09abd5bae0d56b6179664e99b7bf940"
+        },
+        {
+          "path": "references/zoom-transitions.md",
+          "upstream_blob_sha": "27e00a888aa2ba998443ea9e3006b11321d14849"
+        }
+      ],
+      "adaptations": [
+        "Require explicit user instruction before external feedback"
+      ]
+    },
+    {
+      "name": "expo-animation",
+      "path": ".agents/skills/expo-animation",
+      "upstream_repository": "https://github.com/expo/skills",
+      "upstream_ref": "05754e71d02abe0d2d7a2fb5259ccac41f5ea59c",
+      "upstream_path": "plugins/expo/skills/expo-animation",
+      "license": "MIT",
+      "license_evidence": "https://github.com/expo/skills/blob/05754e71d02abe0d2d7a2fb5259ccac41f5ea59c/LICENSE",
+      "upstream_stars_at_review": 3751,
+      "files": [
+        {
+          "path": "LICENSE",
+          "upstream_blob_sha": "57b46f1fd11dc62351ea548104a88aa3f659c11b"
+        },
+        {
+          "path": "RECIPES.md",
+          "upstream_blob_sha": "92c64f12cd118df764499466eb0315b233a52c76"
+        },
+        {
+          "path": "SKILL.md",
+          "upstream_blob_sha": "015ebb22382b1b0d1621002773ab71af94f2d24b"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "upstream_blob_sha": "312c925934e07a3781d1d0c9e196efe2f96f0603"
+        }
+      ],
+      "adaptations": [
+        "Require explicit user instruction before external feedback"
+      ]
+    },
+    {
+      "name": "expo-design-system",
+      "path": ".agents/skills/expo-design-system",
+      "upstream_repository": "https://github.com/expo/skills",
+      "upstream_ref": "05754e71d02abe0d2d7a2fb5259ccac41f5ea59c",
+      "upstream_path": "plugins/expo/skills/expo-design-system",
+      "license": "MIT",
+      "license_evidence": "https://github.com/expo/skills/blob/05754e71d02abe0d2d7a2fb5259ccac41f5ea59c/LICENSE",
+      "upstream_stars_at_review": 3751,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "upstream_blob_sha": "3c07361109588ae16b512ab0f77f44aacfc6bd47"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "upstream_blob_sha": "2322f6ef8e7cfe1716bfc0254adb03a2faefe604"
+        },
+        {
+          "path": "references/audit.md",
+          "upstream_blob_sha": "0a6e276fb410982ca3f5167f69fbe925286e0a14"
+        },
+        {
+          "path": "references/native-slop.md",
+          "upstream_blob_sha": "b313f4c7f1f361b567b051682500a78245946bf6"
+        }
+      ],
+      "adaptations": [
+        "Require explicit user instruction before external feedback"
+      ]
+    },
+    {
+      "name": "swiftui-expert-skill",
+      "path": ".agents/skills/swiftui-expert-skill",
+      "upstream_repository": "https://github.com/AvdLee/SwiftUI-Agent-Skill",
+      "upstream_ref": "204dba7c67256a8b707ee3fbc5759a824191974f",
+      "upstream_path": "skills/swiftui-expert-skill",
+      "license": "MIT",
+      "license_evidence": "https://github.com/AvdLee/SwiftUI-Agent-Skill/blob/204dba7c67256a8b707ee3fbc5759a824191974f/LICENSE",
+      "upstream_stars_at_review": 3786,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "upstream_blob_sha": "534cf9adbd98a421ed85ea081373a370699bc2da"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "upstream_blob_sha": "dc0a5c53ce2718b681456d4499e46b27b9c24c60"
+        },
+        {
+          "path": "assets/logo-small.png",
+          "upstream_blob_sha": "58c6eb6734ee6246ebfba0f551f955bd879578e7"
+        },
+        {
+          "path": "assets/logo.png",
+          "upstream_blob_sha": "7af7d764198eff72132f6da95e6ac213898cb288"
+        },
+        {
+          "path": "assets/logo.svg",
+          "upstream_blob_sha": "34126506623cf59f7ed92d44d42408f12b7c9ce5"
+        },
+        {
+          "path": "references/accessibility-patterns.md",
+          "upstream_blob_sha": "6f0ea0c1275696c5fbddccbf1d7a07b13ee03dbf"
+        },
+        {
+          "path": "references/animation-advanced.md",
+          "upstream_blob_sha": "94256396380d90a6f6eb821bef6faca6d5130a19"
+        },
+        {
+          "path": "references/animation-basics.md",
+          "upstream_blob_sha": "859682a9106895d725c065c6cd8454418694813e"
+        },
+        {
+          "path": "references/animation-transitions.md",
+          "upstream_blob_sha": "e522466199b6f9cf8921fa46ca535579635bdd33"
+        },
+        {
+          "path": "references/charts-accessibility.md",
+          "upstream_blob_sha": "a0f4cd6547a071a12b5590f9039e9705fbf44144"
+        },
+        {
+          "path": "references/charts.md",
+          "upstream_blob_sha": "014adcf19b9cb8e22a3d655f77d486aca1512a9a"
+        },
+        {
+          "path": "references/document-apps.md",
+          "upstream_blob_sha": "5e7bd695652f90a7e1fa5db015803aba5edba56a"
+        },
+        {
+          "path": "references/environment-patterns.md",
+          "upstream_blob_sha": "85e2e2b4e2dd4412ad4eea45dacbd69c8516eb2d"
+        },
+        {
+          "path": "references/focus-patterns.md",
+          "upstream_blob_sha": "74b3d010e0b879c4c9d8aada4ea0c60cc6335824"
+        },
+        {
+          "path": "references/image-optimization.md",
+          "upstream_blob_sha": "73d6c14e7f2795a7dd5706519318a6ac159a5f28"
+        },
+        {
+          "path": "references/iphone-duo.md",
+          "upstream_blob_sha": "6b4187145f91b24ee2e11c4e432c8ebefd9fc53d"
+        },
+        {
+          "path": "references/latest-apis.md",
+          "upstream_blob_sha": "1f5b1d5594d3e5a51af2b38121fdb794fa25d08f"
+        },
+        {
+          "path": "references/layout-best-practices.md",
+          "upstream_blob_sha": "7045f41e8c3ea4878f3b6f5d38f23315c0fab27a"
+        },
+        {
+          "path": "references/liquid-glass.md",
+          "upstream_blob_sha": "f570bc4ab89f089ffe0a0efe6fd90876f5383aee"
+        },
+        {
+          "path": "references/list-patterns.md",
+          "upstream_blob_sha": "e0fd28983c5f45f30f9d9319e189fc5b11441c3d"
+        },
+        {
+          "path": "references/localization.md",
+          "upstream_blob_sha": "c2f7750d1576d54c834c2eb61a402d7cc2abba4d"
+        },
+        {
+          "path": "references/macos-scenes.md",
+          "upstream_blob_sha": "f6cef4802c03cb10fa6562c6274aa70fbd14e5f3"
+        },
+        {
+          "path": "references/macos-views.md",
+          "upstream_blob_sha": "ff5335d7b1cfcced0e1621fd272b74df65c2c29e"
+        },
+        {
+          "path": "references/macos-window-styling.md",
+          "upstream_blob_sha": "40825d9b57c36054be44d39b5306ba4acf5fbd13"
+        },
+        {
+          "path": "references/modifier-patterns.md",
+          "upstream_blob_sha": "03a8d24cac64640855a8a8d8c93ca3f46230640d"
+        },
+        {
+          "path": "references/performance-patterns.md",
+          "upstream_blob_sha": "b62c68c2f758e83b5f14074f203d99bf8f073702"
+        },
+        {
+          "path": "references/previews.md",
+          "upstream_blob_sha": "6e19d2bf2fb3272669f4992680a88b18dff2178a"
+        },
+        {
+          "path": "references/scroll-patterns.md",
+          "upstream_blob_sha": "6827d55684a7063c634e1fd701216f813277a933"
+        },
+        {
+          "path": "references/sheet-navigation-patterns.md",
+          "upstream_blob_sha": "d09845a0228f61728436a7bb1ba80ceaa5fd0e7e"
+        },
+        {
+          "path": "references/soft-deprecation.md",
+          "upstream_blob_sha": "355f1ce6d721b0dac17fb20f11aaeeced319cc8e"
+        },
+        {
+          "path": "references/state-management.md",
+          "upstream_blob_sha": "7a8b35722ffa57192bdd9ef0ccd4f841854ef896"
+        },
+        {
+          "path": "references/styled-text-editing.md",
+          "upstream_blob_sha": "09f083d28b5631f08270f3f5b57d04eb21d1746b"
+        },
+        {
+          "path": "references/text-patterns.md",
+          "upstream_blob_sha": "351097f950f4de968e4ce7bd7472dbe15da0d20a"
+        },
+        {
+          "path": "references/toolbar-patterns.md",
+          "upstream_blob_sha": "c7586aee7c5d936170c9571149598e1266a23973"
+        },
+        {
+          "path": "references/trace-analysis.md",
+          "upstream_blob_sha": "98f279f6fb14d619637e8aa396ad5f0d2a8e21fd"
+        },
+        {
+          "path": "references/trace-recording.md",
+          "upstream_blob_sha": "fcfdd1d9b9fa8013a08127ec1642a2c758510cfe"
+        },
+        {
+          "path": "references/view-structure.md",
+          "upstream_blob_sha": "6b60fc53aa65a1d68af0012c9883bfe3538a8614"
+        },
+        {
+          "path": "references/webkit-integration.md",
+          "upstream_blob_sha": "c2a79841047d37f1ac1a55d57db6e4170be5eadb"
+        },
+        {
+          "path": "scripts/analyze_trace.py",
+          "upstream_blob_sha": "250dbfdfb262f09301d097b597be3c92c5b6dc6e"
+        },
+        {
+          "path": "scripts/instruments_parser/__init__.py",
+          "upstream_blob_sha": "e15975bd89069b689ec4a85a647824463e9b4c83"
+        },
+        {
+          "path": "scripts/instruments_parser/causes.py",
+          "upstream_blob_sha": "1148b42ec6d669851e7c77f036840b7ea69f0d64"
+        },
+        {
+          "path": "scripts/instruments_parser/correlate.py",
+          "upstream_blob_sha": "e29b8dea4d68d380a04a6fa1db5dbba8f430e623"
+        },
+        {
+          "path": "scripts/instruments_parser/events.py",
+          "upstream_blob_sha": "6ea8028ef5be48a478d1dff7b3b308ee27b89b5a"
+        },
+        {
+          "path": "scripts/instruments_parser/hangs.py",
+          "upstream_blob_sha": "8cfc75c3c7f962fbe29c77794151e512154942b3"
+        },
+        {
+          "path": "scripts/instruments_parser/hitches.py",
+          "upstream_blob_sha": "a1e769d2a6abc12cc17319288c5b3af28a0f7f3f"
+        },
+        {
+          "path": "scripts/instruments_parser/summary.py",
+          "upstream_blob_sha": "5927db72f0710e1b86d8160fde47bcb3ba0c7f88"
+        },
+        {
+          "path": "scripts/instruments_parser/swiftui.py",
+          "upstream_blob_sha": "9c359dde0ec5f3f55c5f7c8405c7fe4cede74dff"
+        },
+        {
+          "path": "scripts/instruments_parser/time_profiler.py",
+          "upstream_blob_sha": "720590670c18321dd1e4e3c71d470e411fe3bc93"
+        },
+        {
+          "path": "scripts/instruments_parser/xctrace.py",
+          "upstream_blob_sha": "768839b46ddf26d10a1ceadb509319f5cadac151"
+        },
+        {
+          "path": "scripts/instruments_parser/xml_utils.py",
+          "upstream_blob_sha": "e18acf0b2416183cdac55edad3f2ad27e1083932"
+        },
+        {
+          "path": "scripts/record_trace.py",
+          "upstream_blob_sha": "16cd69d75c07bde86d16dfc321c723038bcb43ce"
+        }
+      ],
+      "adaptations": []
+    },
+    {
+      "name": "emil-design-eng",
+      "path": ".agents/skills/emil-design-eng",
+      "upstream_repository": "https://github.com/emilkowalski/skills",
+      "upstream_ref": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+      "upstream_path": "skills/emil-design-eng",
+      "license": "MIT",
+      "license_evidence": "https://github.com/emilkowalski/skills/blob/a81dbca07f2217b7103e510c0f13f8d5b017afc9/LICENSE",
+      "upstream_stars_at_review": 51375,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "upstream_blob_sha": "62ce902af8dd32c590ea7203e9ab2edb1d6ef81a"
+        }
+      ],
+      "adaptations": []
+    },
+    {
+      "name": "web-design-guidelines",
+      "path": ".agents/skills/web-design-guidelines",
+      "upstream_repository": "https://github.com/vercel-labs/agent-skills",
+      "upstream_ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "upstream_path": "skills/web-design-guidelines",
+      "license": "MIT",
+      "license_evidence": "https://github.com/vercel-labs/agent-skills/blob/1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62/README.md#license",
+      "upstream_stars_at_review": 33202,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "upstream_blob_sha": "ceae92ab319216a68274168fba9b63b998b65997"
+        }
+      ],
+      "adaptations": []
+    }
+  ]
+}

@@ -54,3 +54,34 @@ files, for credentials and private data.
   Install the relevant plugins separately in each supported environment.
 
 Third-party skills retain their included licenses and attribution.
+
+## Curated mobile and web design additions
+
+Reviewed on October 29, 2026. The focused selection complements the existing
+Frontend Design, Impeccable, Taste, image-direction, and iOS design skills.
+
+| Need | Start with | Use alongside |
+| --- | --- | --- |
+| Native iOS / macOS implementation | [SwiftUI Expert](.agents/skills/swiftui-expert-skill/SKILL.md) | Existing mobile-ios-design for design direction |
+| Expo iOS / Android screens | [Expo Native UI](.agents/skills/expo-native-ui/SKILL.md) | [Expo UI](.agents/skills/expo-ui/SKILL.md) for real native controls |
+| Native tabs, stacks, sheets, navigation | [Expo Router](.agents/skills/expo-router/SKILL.md) | Expo Native UI |
+| Mobile gestures, haptics, transitions | [Expo Animation](.agents/skills/expo-animation/SKILL.md) | Expo Router |
+| Consistent mobile themes and components | [Expo Design System](.agents/skills/expo-design-system/SKILL.md) | Expo Native UI |
+| Choose the Expo workflow and check SDK | [Expo Overview](.agents/skills/expo-overview/SKILL.md) | Relevant installed Expo leaf skill |
+| Web component and interaction polish | [Emil Design Engineering](.agents/skills/emil-design-eng/SKILL.md) | Existing build workflow |
+| Web accessibility and UX code review | [Web Design Guidelines](.agents/skills/web-design-guidelines/SKILL.md) | Existing Impeccable review workflow |
+
+These are repository snapshots, not automatic installations in other projects
+or the ChatGPT Skills tab. Copy only the skills needed into a project's
+`.agents/skills/`. Preserve each complete folder, including references, scripts,
+assets, and license/notice files. SwiftUI trace tools require macOS and Xcode;
+Vercel's review skill fetches its current guidelines over the network.
+
+[third-party-sources.json](third-party-sources.json) records primary sources,
+immutable revisions, upstream blob hashes, license evidence, and local adaptations.
+The Expo snapshot includes only the UI-focused subset; other upstream modules
+are optional. External Expo feedback requires an explicit user request.
+
+Local export metadata remains in `sources.json`. The additive local export does
+not remove these additions; review any future export that introduces a local
+skill with the same name before replacing a curated snapshot.

@@ -110,6 +110,11 @@ Pick from the catalog — [references/catalog.md](references/catalog.md) carries
 | Brand / logo system / identity deck | `brandkit` | |
 | "Show me before you build" — web | `imagegen-frontend-web` → then a build route | `image-to-code` for pixel-faithful implementation |
 | Mobile app screens / flows (concepts) | `imagegen-frontend-mobile` | images only — pair with a build route for code |
+| Native iOS / macOS implementation or review | `swiftui-expert-skill` | `mobile-ios-design` for design direction; preserve native conventions |
+| Expo iOS / Android implementation | `expo-overview` → `expo-native-ui` + `expo-ui` | `expo-router` for navigation; `expo-design-system` for shared tokens |
+| Expo gestures, haptics, transitions | `expo-animation` | `expo-router`; keep reduced-motion behavior |
+| Web component / interaction polish | `emil-design-eng` | supplement the selected build workflow; follow existing design tokens |
+| Web accessibility / interaction code review | `web-design-guidelines` | fetch current guidelines; pair with the selected review workflow |
 | User is working in Google Stitch | `stitch-design-taste` | |
 | Iterate on an element live in the browser | `/impeccable live` (needs a dev server) | |
 | Extract / document a design system | `/impeccable extract` or `document` | |
