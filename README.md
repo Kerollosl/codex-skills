@@ -35,6 +35,20 @@ Official discovery documentation: https://learn.chatgpt.com/docs/build-skills
 
 ## Local workflow
 
+Install the complete personal skill collection for Codex or Claude Code:
+
+```sh
+python3 scripts/install.py
+```
+
+Choose the agent at the prompt, or use `--target codex` or `--target claude`
+for unattended setup. The installer copies complete skill folders to
+`~/.codex/skills` (or `$CODEX_HOME/skills` when set) or `~/.claude/skills`.
+Existing folders are skipped and reported, so local edits are preserved;
+remove or rename a folder yourself before reinstalling it. Restart the agent
+to discover new skills. System reference skills and plugin-managed skills are
+not installed. Some skills require additional tools, services, or configuration.
+
 This clone lives under `~/code-projects/Github-Repos/codex-skills`. The existing
 zsh startup sync discovers repositories recursively under `~/code-projects`
 and pulls their configured upstream with `git pull --ff-only`.
